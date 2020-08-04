@@ -1,0 +1,17 @@
+.info , .contact{
+    max-width: max-content;
+    padding: 10px;
+    border-radius: 20px;
+    margin-left: 70px;
+    background: #FAEDDD ;
+    opacity: 0.8;
+    margin-bottom: 10px;
+}
+
+p {
+    padding: 0px 3px 3px 0px;
+}
+.contact  img {
+    height: 30px;
+    width: 30px;
+}

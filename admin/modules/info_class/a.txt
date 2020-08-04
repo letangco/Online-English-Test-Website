@@ -1,0 +1,35 @@
+<div class='suggest'>
+        <?php
+       
+            $sum = 0;
+            $count = 0;
+             foreach ($_SESSION['result_'] as $key => $value) 
+             {   
+                 $sum += round((10 / $value["num_ques"]) * $value["correct"], 2, PHP_ROUND_HALF_EVEN);
+                 $count++;        
+             }
+      echo '<div name="avg" style="display: none" value='.$sum/$count.'></div>';
+            
+?>
+        <script>
+            var avg = $('div[name="avg"]').attr('value');
+           swal({
+              icon: "success",
+              title: "Congratulation!",
+              text: "You got " + avg
+            });
+           
+        </script>
+    </div>
+
+
+
+
+
+ swal({
+              icon: "success",
+              title: "Congratulation!",
+              text: "You got " + avg + "\n" + 
+                    "Suggestion courses for you:" + "\n" 
+                    + <?php echo json_encode($course_name[0]); ?> + "\n"           
+            });

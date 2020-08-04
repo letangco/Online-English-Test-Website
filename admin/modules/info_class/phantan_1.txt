@@ -1,0 +1,49 @@
+create public database link dhcntt connect to dhqg identified by dhqg
+ using 'dhcntt';
+
+--Tao bang
+
+alter table KHOA modify Makhoa varchar2(10);
+
+create table SinhVien
+(
+	MaSV varchar2(10) primary key,
+	MaKhoa varchar2(10),
+	HoTen varchar(50),
+	NgaySinh date,
+	Gioitinh int,
+	constraint fk_sv_khoa foreign key (MaKhoa) references Khoa(MaKhoa)
+)
+
+create table HocPhi 
+(
+	MaSV varchar2(10) not null,
+	HocKi int not null,
+	SoTien number,
+	constraint pk_hp primary key (MaSV, HocKi),
+	constraint fk_hp_sv foreign key (MaSV) references SinhVien(MaSV)
+)
+---INSERT DU LIEU
+INSERT INTO KHOA VALUES ('HTTT_CNTT','CNTT');
+INSERT INTO KHOA VALUES ('KHMT_CNTT','CNTT');
+INSERT INTO KHOA VALUES ('KTMT_CNTT','CNTT');
+INSERT INTO KHOA VALUES ('MMT_CNTT','CNTT');
+INSERT INTO KHOA VALUES ('CNPM_CNTT','CNTT');
+INSERT INTO KHOA VALUES ('KHKT_CNTT','CNTT');
+
+INSERT INTO SINHVIEN VALUES ('06520224','HTTT_CNTT','Cao Dang Khoa', TO_DATE('05/08/1988','DD/MM/YYYY'),1);
+INSERT INTO SINHVIEN VALUES ('06520225','HTTT_CNTT','Le Hoang Long', TO_DATE('04/12/1988','DD/MM/YYYY'),1);
+INSERT INTO SINHVIEN VALUES ('06520226','HTTT_CNTT','Nguyen Tien Long', TO_DATE('01/04/1988','DD/MM/YYYY'),1);
+INSERT INTO SINHVIEN VALUES ('06520227','HTTT_CNTT','Do Van Man', TO_DATE('02/08/1988','DD/MM/YYYY'),1);
+INSERT INTO SINHVIEN VALUES ('06520228','HTTT_CNTT','Le Thi Thuy', TO_DATE('12/03/1988','DD/MM/YYYY'),0);
+
+INSERT INTO HOCPHI VALUES ('06520224', 1, 1260000);
+INSERT INTO HOCPHI VALUES ('06520225', 1, 1260000);
+INSERT INTO HOCPHI VALUES ('06520226', 1, 1260000);
+INSERT INTO HOCPHI VALUES ('06520227', 1, 1260000);
+INSERT INTO HOCPHI VALUES ('06520228', 1, 1260000);
+
+
+----- TAO VA GAN QUYEN
+CREATE ROLE ROLE_dhqg;
+grant select on hocphi to role_DHQG;			

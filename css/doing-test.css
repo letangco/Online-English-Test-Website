@@ -1,0 +1,24 @@
+*
+{
+	font-family: Comic Sans MS;
+    color: #5E5E5D;
+
+}
+.content
+{
+  margin-left: 38px;
+}
+li 
+{
+	 list-style-type: none;
+}
+
+.items:checked + label {
+  color: #0093FC;
+}
+label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+

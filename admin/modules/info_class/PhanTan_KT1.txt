@@ -1,0 +1,101 @@
+---site1 
+create user site_hcm identified by site_hcm;
+grant connect, dba to site_hcm;
+connect site_hcm;
+----site 2
+create user site_ct identified by site_ct;
+grant connect, dba to site_ct;
+connect site_ct;
+----TAO BANG 
+CREATE TABLE CHINHANH
+(
+	MACN VARCHAR(10) PRIMARY KEY,
+	TENCN VARCHAR(50),
+	DIACHI VARCHAR(200)
+)
+
+CREATE TABLE NHANVIEN
+(
+	MANV VARCHAR(10) PRIMARY KEY,
+	HOTEN VARCHAR(100),
+	NGAYSINH DATE,
+	GIOITINH VARCHAR(5),
+	CMND VARCHAR(20),
+	CHUCVU VARCHAR(50),
+	MACN VARCHAR(10), 
+	NGAYVAOLAM DATE,
+	BACTOTNGHIEP VARCHAR(30), 
+	constraint FK_NV_CN foreign key (MACN) references CHINHANH(MACN)
+)
+
+CREATE TABLE KHOHANG
+(
+	MAHH VARCHAR(10) PRIMARY KEY,
+	TENHH VARCHAR(50),
+	SOLUONG INT, 
+	DVT VARCHAR(20),
+	NGAYSX DATE,
+	NGAYNHAPKHO DATE, 
+	MACN VARCHAR(10),
+	constraint FK_KH_CN foreign key (MACN) references CHINHANH(MACN)
+)	
+
+-----INSERT DU LIEU
+-- Chinhanh o ca 2 site
+INSERT INTO CHINHANH VALUES ('CN01', 'Tru so chinh TPHCM','Khu Cong nghiep Tan Tan, quan Binh Tan, Thanh pho Ho Chi Minh');
+INSERT INTO CHINHANH VALUES ('CN02', 'Can Tho', 'Quan Ninh Kieu, TP Can Tho');
+INSERT INTO CHINHANH VALUES ('CN03', 'Da Nang', 'Quan Lien Chieu, TP Da Nang');
+INSERT INTO CHINHANH VALUES ('CN04', 'Hai Phong', 'Quan Le Chan, TP Hai Phong');
+
+--nhanvien o site 1
+INSERT INTO NHANVIEN VALUES ('NV001', 'Phan Thi Guong', TO_DATE('24/06/1980','DD/MM/YYYY'),'Nu','272089765', 'Giam doc', 'CN01', TO_DATE('01/02/2005','DD/MM/YYYY'), 'Thac si');
+INSERT INTO NHANVIEN VALUES ('NV002', 'Pham Ngoc Hung', TO_DATE('31/03/1985','DD/MM/YYYY'),'Nam','236293749', 'Truong chi nhanh', 'CN01', TO_DATE('01/02/2005','DD/MM/YYYY'), 'Dai hoc');
+INSERT INTO NHANVIEN VALUES ('NV006', 'Nguyen Thi Phuong', TO_DATE('11/11/1989','DD/MM/YYYY'),'Nu','215364500', 'Thu kho', 'CN01', TO_DATE('01/04/2005','DD/MM/YYYY'), 'Cao dang');
+INSERT INTO NHANVIEN VALUES ('NV010', 'Do Trung Kien', TO_DATE('08/12/1986','DD/MM/YYYY'),'Nam','251638005', 'Ke toan', 'CN01', TO_DATE('01/07/2007','DD/MM/YYYY'), 'Cao dang');
+--nhanvien o site 2
+INSERT INTO NHANVIEN VALUES ('NV003', 'Pham Hoang Thi', TO_DATE('04/11/1986','DD/MM/YYYY'),'Nam','212538062', 'Truong chi nhanh', 'CN02', TO_DATE('01/02/2005','DD/MM/YYYY'), 'Dai hoc');
+INSERT INTO NHANVIEN VALUES ('NV007', 'Nguy Thi Hang', TO_DATE('23/02/1988','DD/MM/YYYY'),'Nu','283140357', 'Thu kho', 'CN02', TO_DATE('01/04/2005','DD/MM/YYYY'), 'Cao dang');
+
+--khohang o site 1
+INSERT INTO KHOHANG VALUES ('HH005', 'Binh loc nuoc', '2000', 'Bo', TO_DATE('16/03/2016','DD/MM/YYYY'), TO_DATE('20/03/2016','DD/MM/YYYY'), 'CN01');
+INSERT INTO KHOHANG VALUES ('HH006', 'Phu kien voi', '500', 'Cai', TO_DATE('09/01/2016','DD/MM/YYYY'), TO_DATE('11/01/2016','DD/MM/YYYY'), 'CN01');
+--khohang o site 2
+INSERT INTO KHOHANG VALUES ('HH001', 'Hat nhua tai sinh PP', '100', 'Tan', TO_DATE('10/04/2016','DD/MM/YYYY'), TO_DATE('11/04/2016','DD/MM/YYYY'), 'CN02');
+INSERT INTO KHOHANG VALUES ('HH007', 'Phu kien loc', '600', 'Cai', TO_DATE('31/03/2016','DD/MM/YYYY'), TO_DATE('02/04/2016','DD/MM/YYYY'), 'CN02');
+
+
+--site1
+create user giamdoc identified by giamdoc;
+grant connect to giamdoc;
+GRANT SELECT,INSERT,UPDATE,DELETE ON chinhanh TO giamdoc;
+GRANT SELECT,INSERT,UPDATE,DELETE ON nhanvien TO giamdoc;
+GRANT SELECT,INSERT,UPDATE,DELETE ON khohang TO giamdoc;
+
+create user thukho identified by thukho;
+grant connect to thukho;
+GRANT SELECT,INSERT,UPDATE,DELETE ON khohang TO thukho;
+
+create user truongchinhanh identified by truongchinhanh;
+grant connect to truongchinhanh;
+GRANT SELECT,INSERT,UPDATE,DELETE ON nhanvien TO truongchinhanh;
+GRANT SELECT,INSERT,UPDATE,DELETE ON khohang TO truongchinhanh;
+
+--site2
+create user giamdoc identified by giamdoc;
+grant connect to giamdoc;
+GRANT SELECT,INSERT,UPDATE,DELETE ON chinhanh TO giamdoc;
+GRANT SELECT,INSERT,UPDATE,DELETE ON nhanvien TO giamdoc;
+GRANT SELECT,INSERT,UPDATE,DELETE ON khohang TO giamdoc;
+
+create user thukho identified by thukho;
+grant connect to thukho;
+GRANT SELECT,INSERT,UPDATE,DELETE ON khohang TO thukho;
+
+create user truongchinhanh identified by truongchinhanh;
+grant connect to truongchinhanh;
+GRANT SELECT,INSERT,UPDATE,DELETE ON nhanvien TO truongchinhanh;
+GRANT SELECT,INSERT,UPDATE,DELETE ON khohang TO truongchinhanh;
+
+
+create public database link ten_link connect to site_ct identified by site_ct
+ using 'ten_link_';

@@ -1,0 +1,21 @@
+.test-detail{
+    max-width: max-content;
+    padding: 10px;
+    border-radius: 20px;
+    background: #FAEDDD ;
+    opacity: 0.8;
+    margin-bottom: 10px;
+}
+
+p {
+    padding: 0px 3px 3px 0px;
+}
+.test-detail >  img {
+    height: 30px;
+    width: 30px;
+}
+
+.test-submit  a {
+    text-decoration: none;
+    color: white;
+}

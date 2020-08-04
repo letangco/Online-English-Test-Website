@@ -1,0 +1,33 @@
+
+.menu-1 > li 
+{
+    list-style-type: none;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #e9d8f4;
+    margin-top: 90px;
+}
+.menu-1 a 
+{
+    text-decoration: none;
+    color: #544738;
+    float: left;
+    padding: 5px 20px;
+}
+.menu-1 a:hover
+{
+    color: #7eb9be;
+    -webkit-transform: rotate(-5deg) scale(1.4);
+    -moz-transform: rotate(-5deg) scale(1.0);
+    -o-transform: rotate(-5deg) scale(0.9);
+}
+.menu-1{
+    display: flex;
+    flex-direction: row;
+}
+.menu-1{
+    margin-left: 50px;
+
+    line-height: 33px;
+    color: #000000;
+}

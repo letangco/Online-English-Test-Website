@@ -1,0 +1,147 @@
+.clearfix:before,  
+.clearfix:after {  
+    content: " ";  
+    display: table;  
+}  
+.clearfix:after {  
+    clear: both;  
+}  
+ 
+.clearfix {  
+    *zoom: 1;  
+}
+.billboard{
+    width: 100%;
+    height: 690px;
+}
+.billboard .dark{
+    background-size: cover;
+}
+
+.billboard .caption{
+    margin-top: 30px;
+    text-align: center;
+}
+.billboard .caption h1{
+    font-size: 50px;
+    font-weight: bold; 
+    margin-bottom: 30px;
+}
+
+.billboard .caption.dark h1{
+    color: #5d5d5d;
+}
+
+.billboard .caption p{
+    font-size: 18px;
+    margin-bottom: 30px;;
+}
+
+.billboard .caption hr{
+    display: inline-block;
+    height: 1px;
+    width: 30px;
+    border: 0!important;   
+    margin: 0;
+    padding: 0;
+}
+
+.billboard .caption.dark hr{
+    background: #5d5d5d;
+}
+
+.services ul{
+    margin-top: -300px;
+}
+
+.services ul li{
+    list-style: none;
+    display: block;
+    width: 313px;
+    float: left;
+    margin-left: 80px;
+    text-align: center;
+}
+
+.services ul li:first-child{
+    margin-left: 0;
+}
+
+.services ul li .separator{
+    display: block;
+    width: 1px;
+    height: 20px;
+    background: #f6f6f6;
+    margin: 20px auto;
+}
+
+.services ul li h2{
+    color: #DD6C64;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.services ul li p{
+   color: black;
+    font-size: 18px;
+    line-height: 28px; 
+    margin-top: 40px;
+    letter-spacing: .5px;
+}
+input {
+    margin: 10px;
+}
+.test-list {
+    display: flex;
+    flex-direction: column;
+}
+.test-listing {
+   position: relative;
+    }
+.test-image {
+     width: 300px;
+       height: 180px;
+       line-height: 0;
+       overflow: hidden;
+   }
+ .test-image img {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    transition: -webkit-filter 0.3s ease-in;
+    transition: filter 0.3s ease-in;
+    transition: filter 0.3s ease-in, -webkit-filter 0.3s ease-in;
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  .test-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-decoration: none;
+    z-index: 1;
+    position: absolute;
+    width: 300px;
+    height: 180px;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity .5s;
+    background: rgba(90,0,10,0.4);
+    color:#DD6C64;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.test-listing:hover .test-title {
+    opacity: 1;
+    color: #DD6C64;
+    text-decoration: none;
+  }
+.test-listing:hover .test-image img {
+    -webkit-filter: blur(2px);
+            filter: blur(2px);
+  }
+.tests{
+    padding: 70px 50px;
+}
+
